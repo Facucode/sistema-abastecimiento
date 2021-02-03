@@ -1,0 +1,1 @@
+/*Codigo Interno| Descripcion  | Cantidad| Bonific|Medida|Lista | abrev|Moneda| Pr.Lista…*/
