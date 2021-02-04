@@ -4,8 +4,13 @@ const ElementoSolicitud = db.elementosSolicitud;
 
 exports.createSolicitud = (solicitud) => {
     return Solicitud.create({
-      title: solicitud.title,
-      description: solicitud.description,
+      division: solicitud.division,
+      comprobante: solicitud.comprobante,
+      numero: solicitud.numero,
+      fecha: solicitud.fecha,
+      costo: solicitud.costo,
+      comentario: solicitud.comentario
+
     })
       .then((solicitud) => {
         console.log(">> Created solicitud: " + JSON.stringify(solicitud, null, 4));
@@ -19,9 +24,13 @@ exports.createSolicitud = (solicitud) => {
 
   exports.createElementoSolicitud = (solicitudId, elementoSolicitud) => {
     return ElementoSolicitud.create({
-      name: elementoSolicitud.name,
-      text: elementoSolicitud.text,
-      solicitudId: solicitudId,
+      codigo: elementoSolicitud.name,
+      descripcion: elementoSolicitud.text,
+      solicitud:solicitudId,
+      cpto: elementoSolicitud,
+      cantidad:elementoSolicitud,
+      medida:elementoSolicitud,
+      fechalimite:elementoSolicitud
     })
       .then((elementoSolicitud) => {
         console.log(">> Created comment: " + JSON.stringify(comment, null, 4));
@@ -55,7 +64,7 @@ exports.createSolicitud = (solicitud) => {
   exports.findAll = () => {
     return Solicitud.findAll({
       include: ["elementosSolicitud"],
-    }).then((tutorials) => {
-      return tutorials;
+    }).then((solicitudes) => {
+      return solicitudes;
     });
   };

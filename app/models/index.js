@@ -42,4 +42,12 @@ db.elementosSolicitud.belongsTo(db.solicitudes, {
 });
 module.exports = db;
 
+db.facturas.hasMany(db.elementosFactura, { as: "elementosFactura" });
+db.elementosFactura.belongsTo(db.facturas, {
+  foreignKey: "facturaId",
+  as: "factura",
+});
+module.exports = db;
+
+
 //Hacer lo mismo con las demas tablas 1 a M
