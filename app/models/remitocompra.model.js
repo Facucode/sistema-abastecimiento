@@ -44,7 +44,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       }
       //JOIN ORDEN DE COMPRA
-      //JOIN INFORME DE RECEPCION
+      //JOIN xINFORME DE RECEPCION
       //JOIN PROVEEDORES
       //ARTICULOS DEL PROVEEDOR / TODOS??
 

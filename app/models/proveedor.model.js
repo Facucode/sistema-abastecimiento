@@ -8,10 +8,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
      
-      
+      //MAS DATOS DEL PROVEEDOR
 
 
     });
   
-    return Tutorial;
+    return Proveedor;
   };

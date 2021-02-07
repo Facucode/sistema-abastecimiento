@@ -1,11 +1,15 @@
 const db = require("../models");
 const Pedidocotizacion = db.pedidoscotizacion;
-const ElementoCotizacion = db.elementosCotizacion;
+//const ElementoCotizacion = db.elementosCotizacion;
 
 exports.createPedidocotizacion = (pedidocotizacion) => {
     return Pedidocotizacion.create({
-      title: pedidocotizacion.title,
-      description: pedidocotizacion.description,
+      division: pedidocotizacion.division,
+      comprobante: pedidocotizacion.comprobante,
+      numero: pedidocotizacion.numero,
+      fecha: pedidocotizacion.fecha,
+      centro: pedidocotizacion.numero,
+      comentario: pedidocotizacion.comentario,
     })
       .then((pedidocotizacion) => {
         console.log(">> Created pedidocotizacion: " + JSON.stringify(pedidocotizacion, null, 4));
@@ -16,7 +20,7 @@ exports.createPedidocotizacion = (pedidocotizacion) => {
       });
   };
 
-
+/*
   exports.createElementoCotizacion = (pedidocotizacionId, elementoCotizacion) => {
     return ElementoCotizacion.create({
       name: elementoCotizacion.name,
@@ -31,9 +35,9 @@ exports.createPedidocotizacion = (pedidocotizacion) => {
         console.log(">> Error while creating element: ", err);
       });
   };
-
+*/
   exports.findPedidocotizacionById = (pedidocotizacionId) => {
-    return Pedidocotizacion.findByPk(pedidocotizacionId, { include: ["elementosCotizacion"] })
+    return Pedidocotizacion.findByPk(pedidocotizacionId, {/* include: ["elementosCotizacion"] */})
       .then((pedidocotizacion) => {
         return pedidocotizacion;
       })
@@ -41,7 +45,7 @@ exports.createPedidocotizacion = (pedidocotizacion) => {
         console.log(">> Error while finding element: ", err);
       });
   };
-
+/*
   exports.findElementoCotizacionById = (id) => {
     return ElementoCotizacion.findByPk(id, { include: ["pedidocotizacion"] })
       .then((elementoCotizacion) => {
@@ -51,10 +55,10 @@ exports.createPedidocotizacion = (pedidocotizacion) => {
         console.log(">> Error while finding element: ", err);
       });
   };
-
+*/
   exports.findAll = () => {
     return Pedidocotizacion.findAll({
-      include: ["elementosCotizacion"],
+     /* include: ["elementosCotizacion"],*/
     }).then((pedidoscotizacion) => {
       return pedidoscotizacion;
     });

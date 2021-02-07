@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
      comprobante: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       numero:{
         type: Sequelize.INTEGER

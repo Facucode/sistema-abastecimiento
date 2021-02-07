@@ -1,6 +1,6 @@
 const db = require("../models");
 const Solicitud = db.solicitudes;
-const ElementoSolicitud = db.elementosSolicitud;
+const Articulo = db.articulos;
 
 exports.createSolicitud = (solicitud) => {
     return Solicitud.create({
@@ -22,19 +22,24 @@ exports.createSolicitud = (solicitud) => {
   };
 
 
-  exports.createElementoSolicitud = (solicitudId, elementoSolicitud) => {
-    return ElementoSolicitud.create({
-      codigo: elementoSolicitud.name,
-      descripcion: elementoSolicitud.text,
+  exports.createArticulo = (solicitudId, Articulo) => {
+    return Articulo.create({
+      codigo: articulo.name,
+      descripcion: articulo.text,
       solicitud:solicitudId,
-      cpto: elementoSolicitud,
-      cantidad:elementoSolicitud,
-      medida:elementoSolicitud,
-      fechalimite:elementoSolicitud
+      cpto: articulo.cpto,
+      cantidad:articulo.cantidad,
+      medida:articulo.medida,
+      moneda:articulo.moneda,
+      subtotal:articulo.subtotal,
+      descuento:articulo.descuento,
+      recargo:articulo.recargo,
+      iva:articulo.iva,
+      fechalimite:articulo.fechalimite,
     })
-      .then((elementoSolicitud) => {
+      .then((articulo) => {
         console.log(">> Created comment: " + JSON.stringify(comment, null, 4));
-        return elementoSolicitud;
+        return articulo;
       })
       .catch((err) => {
         console.log(">> Error while creating comment: ", err);
@@ -42,7 +47,7 @@ exports.createSolicitud = (solicitud) => {
   };
 
   exports.findSolicitudById = (solicitudId) => {
-    return Solicitud.findByPk(solicitudId, { include: ["elementosSolicitud"] })
+    return Solicitud.findByPk(solicitudId, { include: ["articulos"] })
       .then((solicitud) => {
         return solicitud;
       })
@@ -51,10 +56,10 @@ exports.createSolicitud = (solicitud) => {
       });
   };
 
-  exports.findElementoSolicitudById = (id) => {
-    return ElementoSolicitud.findByPk(id, { include: ["solicitud"] })
-      .then((elementoSolicitud) => {
-        return elementoSolicitud;
+  exports.findArticuloById = (id) => {
+    return Articulo.findByPk(id, { include: ["solicitud"] })
+      .then((articulo) => {
+        return articulo;
       })
       .catch((err) => {
         console.log(">> Error while finding comment: ", err);
@@ -63,7 +68,7 @@ exports.createSolicitud = (solicitud) => {
 
   exports.findAll = () => {
     return Solicitud.findAll({
-      include: ["elementosSolicitud"],
+      include: ["articulos"],
     }).then((solicitudes) => {
       return solicitudes;
     });

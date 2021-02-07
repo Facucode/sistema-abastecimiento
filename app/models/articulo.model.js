@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-    const Elementocotizacion = sequelize.define("elementocotizacion", {
+    const Articulo = sequelize.define("articulo", {
      codigo: {
         type: DataTypes.INTEGER
       },
       descripcion: {
         type: DataTypes.STRING
       },
-      concepto: {
+      cpto: {
         type: DataTypes.STRING
       },
       cantidad: {
@@ -14,12 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       },
       medida: {
         type: DataTypes.STRING
-      }/*
+      },
+      moneda:{type: DataTypes.STRING},
+
       fechalimite: {
         type: DataTypes.DATEONLY
 
-      }*/
+      },
+      subtotal:{type: DataTypes.FLOAT},
+      descuento:{type: DataTypes.FLOAT},
+      recargo:{type: DataTypes.FLOAT},
+      iva:{type: DataTypes.FLOAT}
     });
   
-    return Comment;
-  };
+    return Articulo; };

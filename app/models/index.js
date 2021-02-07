@@ -20,34 +20,40 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.solicitudes = require("./solicitud.model.js")(sequelize, Sequelize);
-db.elementosSolicitud = require("./elementoSolicitud.model.js")(sequelize, Sequelize);
-db.remitocompras=require("./remitocompra.model.js")(sequelize, Sequelize);
-db.ordencompras=require("./ordencompra.model.js")(sequelize, Sequelize);
-db.pedidocotizaciones=require("./pedidocotizacion.model.js")(sequelize, Sequelize);
-db.facturas=require("./factura.model.js")(sequelize, Sequelize);
-db.dictamenes=require("./dictamen.model.js")(sequelize, Sequelize);
-db.elementosremitocompra=require("./elementoremitocompra.model.js")(sequelize, Sequelize);
-db.elementosorden=require("./elementosorden.model.js")(sequelize, Sequelize);
-db.elementoscotizacion=require("./elementocotizacion.model.js")(sequelize, Sequelize);
-db.elementosfactura=require("./elementofactura.model.js")(sequelize, Sequelize);
-//db.elementosdictamen
+db.remitocompras = require("./remitocompra.model.js")(sequelize, Sequelize);
+db.ordencompras = require("./ordencompra.model.js")(sequelize, Sequelize);
+db.pedidocotizaciones = require("./pedidocotizacion.model.js")(sequelize, Sequelize);
+db.facturas = require("./factura.model.js")(sequelize, Sequelize);
+db.dictamenes = require("./dictamen.model.js")(sequelize, Sequelize);
+db.articulos =  require("./articulo.model.js")(sequelize, Sequelize);
+db.proveedores =  require("./proveedor.model.js")(sequelize, Sequelize);
 
 
 
 
-db.solicitudes.hasMany(db.elementosSolicitud, { as: "elementosSolicitud" });
-db.elementosSolicitud.belongsTo(db.solicitudes, {
-  foreignKey: "solicitudId",
+db.solicitudes.hasMany(db.articulos, { as: "articulos" });
+db.articulos.belongsTo(db.solicitudes, {
+  foreignKey: "articuloId",
   as: "solicitud",
 });
 module.exports = db;
 
-db.facturas.hasMany(db.elementosFactura, { as: "elementosFactura" });
-db.elementosFactura.belongsTo(db.facturas, {
-  foreignKey: "facturaId",
-  as: "factura",
+
+
+
+db.proveedores.hasMany(db.articulos, { as: "articulos" });
+db.articulos.belongsTo(db.proveedores, {
+  foreignKey: "articuloId",
+  as: "proveedor",
 });
 module.exports = db;
 
+db.dictamenes.hasOne(remitos);
+db.ordencompras.hasOne(pedidocotizaciones);
+db.pedidocotizaciones.hasOne(solicitudes);
+db.remitocompras.hasOne(ordencompras);
 
-//Hacer lo mismo con las demas tablas 1 a M
+//Dictamen incluye remito de compra
+//Remito de compra incluye Orden de Compra 
+//Orden de compra incluye pedido cotizacion
+//Pedido de cotizacion incluye solicitud de compra
