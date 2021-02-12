@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./app/models");
 const controller = require("./app/controllers/solicitud.controller");
 
-const run = async () => {}
+const run = async () => { }
 
 
 
